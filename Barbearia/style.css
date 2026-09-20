@@ -1,0 +1,1143 @@
+/* =========================================================
+   BLADE BARBER — CSS
+   Paleta extraída da logo: preto, teal acinzentado,
+   vermelho coral e branco.
+
+   No <head> do HTML, adicione:
+
+   <meta name="viewport"
+         content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Sora:wght@300;400;600;700&display=swap"
+         rel="stylesheet">
+========================================================= */
+
+/* =========================
+   TOKENS
+========================= */
+
+:root {
+  /* Retiradas da logo */
+  --preto: #08090b;        /* fundo base */
+  --preto-2: #101316;      /* cards escuros */
+  --carvao: #181d20;       /* elevação */
+  --teal: #5c9499;         /* lâmina / forma teal */
+  --teal-claro: #a7c1c5;   /* brilho da lâmina */
+  --teal-escuro: #2c4a4e;
+  --vermelho: #d9414b;     /* faixa vermelha */
+  --vermelho-2: #a62f38;
+  --branco: #ffffff;
+  --claro: #edf1f1;        /* seções claras: branco com sopro de teal */
+  --cinza: #9aa6a8;        /* texto secundário no escuro */
+  --cinza-2: #5b6668;      /* texto secundário no claro */
+
+  /* Aliases dos nomes antigos, pra nada quebrar */
+  --azul: var(--preto);
+  --azul-2: var(--preto-2);
+  --cinza-claro: var(--claro);
+
+  /* Tipografia */
+  --display: "Archivo Black", "Sora", sans-serif;
+  --texto: "Sora", system-ui, sans-serif;
+
+  /* Layout */
+  --gutter: clamp(16px, 5vw, 32px);
+  --raio: 4px;
+
+  /* Proporção das áreas de imagem */
+  --ratio-sobre: 4 / 3;
+  --ratio-corte: 4 / 3;
+  --ratio-barbeiro: 4 / 5;
+  --ratio-mapa: 16 / 9;
+}
+
+/* =========================
+   RESET
+========================= */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--texto);
+  font-weight: 400;
+  background: var(--preto);
+  color: var(--branco);
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+
+img, svg, video, iframe {
+  display: block;
+  max-width: 100%;
+}
+
+img, video {
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--vermelho);
+  color: var(--branco);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--teal-claro);
+  outline-offset: 3px;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+  width: min(100%, 1200px);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  padding-inline: max(var(--gutter), env(safe-area-inset-left), env(safe-area-inset-right));
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.bg-home {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  background:
+    linear-gradient(115deg, rgba(8, 9, 11, 0.94) 45%, rgba(44, 74, 78, 0.72) 100%),
+    url("assets/bg.jpg") center / cover no-repeat;
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+  min-height: clamp(70px, 10vw, 92px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: clamp(8px, 2vw, 20px);
+  padding-top: env(safe-area-inset-top);
+}
+
+/* =========================
+   LOGO
+   A altura manda, a largura é livre:
+   serve pra logo alta, larga ou quadrada.
+========================= */
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  flex: 0 1 auto;
+}
+
+.header-logo img {
+  height: clamp(36px, 8vw, 72px);
+  width: auto;
+  max-width: min(45vw, 220px);
+  object-fit: contain;
+}
+
+/* =========================
+   ICONES
+========================= */
+
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 1.5vw, 10px);
+}
+
+.header-icons a {
+  width: clamp(34px, 9vw, 38px);
+  height: clamp(34px, 9vw, 38px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(167, 193, 197, 0.22);
+  color: var(--teal-claro);
+  font-size: clamp(12px, 3vw, 15px);
+  transition: color 0.25s, border-color 0.25s, background 0.25s;
+}
+
+.header-icons a:hover {
+  background: var(--teal-escuro);
+  border-color: var(--teal);
+  color: var(--branco);
+}
+
+/* =========================
+   BOTÃO HEADER
+========================= */
+
+.header-button {
+  padding: clamp(10px, 2vw, 13px) clamp(12px, 3vw, 20px);
+  background: var(--vermelho);
+  border-radius: var(--raio);
+  font-size: clamp(10px, 2.6vw, 12px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  transition: background 0.25s;
+}
+
+.header-button:hover {
+  background: var(--vermelho-2);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: calc(100svh - clamp(70px, 10vw, 92px));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-block: clamp(40px, 8vw, 80px);
+}
+
+/* Lâmina: faixa diagonal da logo, discreta, atrás do texto */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 -20% 0 45%;
+  background: linear-gradient(
+    100deg,
+    transparent 0 42%,
+    rgba(92, 148, 153, 0.18) 42% 52%,
+    transparent 52% 58%,
+    rgba(217, 65, 75, 0.16) 58% 66%,
+    transparent 66%
+  );
+  transform: skewX(-12deg);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Marca diagonal antes das legendas — eco do corte da logo */
+.hero-subtitle,
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--teal-claro);
+  font-size: clamp(11px, 2.5vw, 12px);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+}
+
+.hero-subtitle::before,
+.section-tag::before {
+  content: "";
+  width: 26px;
+  height: 3px;
+  background: var(--vermelho);
+  transform: skewX(-25deg);
+  flex-shrink: 0;
+}
+
+.hero h1 {
+  max-width: 14ch;
+  margin: 18px 0 20px;
+  font-size: clamp(38px, 9vw, 86px);
+  text-transform: uppercase;
+}
+
+.hero h1 span,
+.section-header h2 span,
+.about-description h2 span,
+.cta h2 span {
+  color: var(--vermelho);
+}
+
+.hero p {
+  max-width: 54ch;
+  color: var(--cinza);
+  font-size: clamp(14px, 3.4vw, 16px);
+  line-height: 1.75;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.button-primary,
+.button-secondary {
+  padding: 15px 26px;
+  border-radius: var(--raio);
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  flex: 1 1 200px;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+
+.button-primary {
+  background: var(--vermelho);
+  color: var(--branco);
+}
+
+.button-primary:hover {
+  background: var(--vermelho-2);
+}
+
+.button-secondary {
+  border: 1px solid rgba(167, 193, 197, 0.35);
+  color: var(--teal-claro);
+}
+
+.button-secondary:hover {
+  border-color: var(--teal-claro);
+  background: rgba(92, 148, 153, 0.12);
+  color: var(--branco);
+}
+
+.opening-hours {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: clamp(28px, 5vw, 44px);
+  padding-left: 16px;
+  border-left: 2px solid var(--teal);
+}
+
+.opening-hours i {
+  color: var(--teal-claro);
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.opening-hours div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.opening-hours span {
+  color: var(--cinza);
+  font-size: 13px;
+}
+
+/* Celular deitado */
+@media (orientation: landscape) and (max-height: 520px) {
+  .bg-home,
+  .hero {
+    min-height: auto;
+  }
+}
+
+/* =========================
+   SEÇÕES
+========================= */
+
+.about,
+.services,
+.barbers,
+.location {
+  position: relative;
+  padding-block: clamp(60px, 10vw, 104px);
+}
+
+/* Fita diagonal no topo das seções: o corte da lâmina */
+.about::before,
+.barbers::before,
+.location::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 5px;
+  background: repeating-linear-gradient(
+    115deg,
+    var(--vermelho) 0 14px,
+    var(--teal) 14px 28px
+  );
+  opacity: 0.85;
+}
+
+/* =========================
+   SOBRE
+========================= */
+
+.about {
+  background: var(--claro);
+  color: var(--preto);
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr));
+  gap: clamp(35px, 6vw, 70px);
+  align-items: center;
+}
+
+/* Imagem aceita qualquer proporção de foto */
+.about-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--ratio-sobre);
+  overflow: hidden;
+  border-radius: var(--raio);
+  background: var(--preto-2);
+}
+
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* ajuste individual: <img style="--pos: center top"> */
+  object-position: var(--pos, center);
+}
+
+/* Canto cortado em diagonal, igual ao mark da logo */
+.about-image::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: clamp(60px, 12%, 110px);
+  aspect-ratio: 1;
+  background: var(--claro);
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+}
+
+.about-badge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  max-width: 100%;
+  padding: clamp(12px, 2.5vw, 18px) clamp(16px, 3vw, 24px);
+  background: var(--vermelho);
+  color: var(--branco);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.about-badge strong {
+  font-family: var(--display);
+  font-size: clamp(22px, 5vw, 30px);
+  line-height: 1;
+}
+
+.about-badge span {
+  font-size: clamp(10px, 2.4vw, 11px);
+  letter-spacing: 0.1em;
+  opacity: 0.9;
+}
+
+.about-description h2 {
+  margin: 16px 0 20px;
+  font-size: clamp(28px, 6vw, 50px);
+  text-transform: uppercase;
+}
+
+.about-description p {
+  color: var(--cinza-2);
+  line-height: 1.85;
+  margin-bottom: 15px;
+  max-width: 62ch;
+}
+
+.about-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  gap: 22px;
+  margin-top: 34px;
+}
+
+.feature {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.feature i {
+  color: var(--teal);
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.feature div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.feature strong {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.feature span {
+  color: var(--cinza-2);
+  font-size: 12px;
+}
+
+/* =========================
+   SERVIÇOS
+========================= */
+
+.services {
+  background: var(--preto);
+}
+
+.section-header {
+  text-align: center;
+  max-width: 660px;
+  margin: 0 auto clamp(38px, 6vw, 56px);
+}
+
+.section-header h2 {
+  font-size: clamp(28px, 6vw, 50px);
+  margin: 14px 0;
+  text-transform: uppercase;
+}
+
+.section-header p {
+  color: var(--cinza);
+  line-height: 1.75;
+}
+
+/* 3, 2 ou 1 coluna automaticamente */
+.haircuts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: clamp(18px, 3vw, 26px);
+}
+
+.haircut {
+  background: var(--preto-2);
+  border: 1px solid rgba(167, 193, 197, 0.1);
+  border-radius: var(--raio);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s;
+}
+
+.haircut:hover {
+  border-color: var(--teal);
+}
+
+.haircut-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--ratio-corte);
+  overflow: hidden;
+  background: var(--carvao);
+}
+
+.haircut-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--pos, center);
+  transition: transform 0.6s ease;
+}
+
+.haircut:hover .haircut-image img {
+  transform: scale(1.05);
+}
+
+.service-number {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 7px 11px;
+  background: rgba(8, 9, 11, 0.7);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--teal);
+  color: var(--teal-claro);
+  border-radius: var(--raio);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.haircut-info {
+  padding: clamp(18px, 4vw, 24px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px 16px;
+  flex: 1;
+}
+
+.haircut-info > div {
+  min-width: 0;
+  flex: 1 1 180px;
+}
+
+.haircut-info h3 {
+  font-family: var(--texto);
+  font-weight: 700;
+  font-size: clamp(16px, 4vw, 18px);
+  margin-bottom: 8px;
+}
+
+.haircut-info p {
+  color: var(--cinza);
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+.price {
+  font-family: var(--display);
+  font-size: 18px;
+  color: var(--vermelho);
+  white-space: nowrap;
+}
+
+/* =========================
+   TABELA DE PREÇOS
+========================= */
+
+.price-section {
+  margin: clamp(52px, 9vw, 86px) auto 0;
+  max-width: 820px;
+}
+
+.price-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.price-header h2 {
+  margin-top: 12px;
+  font-size: clamp(26px, 5.5vw, 42px);
+  text-transform: uppercase;
+}
+
+.price-list {
+  background: var(--preto-2);
+  border-top: 3px solid var(--vermelho);
+  border-radius: 0 0 var(--raio) var(--raio);
+  overflow: hidden;
+}
+
+.price-item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px 20px;
+  padding: clamp(16px, 3.5vw, 21px) clamp(16px, 4vw, 26px);
+  border-bottom: 1px solid rgba(167, 193, 197, 0.09);
+  transition: background 0.25s;
+}
+
+.price-item:last-child {
+  border-bottom: 0;
+}
+
+.price-item:hover {
+  background: rgba(92, 148, 153, 0.07);
+}
+
+.price-item div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1 1 200px;
+}
+
+.price-item div strong {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.price-item span {
+  color: var(--cinza);
+  font-size: clamp(10px, 2.6vw, 12px);
+}
+
+.price-item > strong {
+  font-family: var(--display);
+  font-size: 19px;
+  color: var(--teal-claro);
+  white-space: nowrap;
+}
+
+/* =========================
+   BARBEIROS
+========================= */
+
+.barbers {
+  background: var(--claro);
+  color: var(--preto);
+}
+
+.barbers .section-header p {
+  color: var(--cinza-2);
+}
+
+.barbers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
+  gap: clamp(18px, 3vw, 26px);
+}
+
+.barber-card {
+  background: var(--branco);
+  border-radius: var(--raio);
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgba(8, 9, 11, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Foto: retrato, paisagem ou quadrada, sempre correta */
+.barber-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--ratio-barbeiro);
+  overflow: hidden;
+  background: var(--preto-2);
+}
+
+.barber-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* topo priorizado: não corta o rosto */
+  object-position: var(--pos, center top);
+}
+
+.barber-photo::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 45%;
+  background: linear-gradient(transparent, rgba(8, 9, 11, 0.75));
+  pointer-events: none;
+}
+
+.barber-status {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  z-index: 1;
+  max-width: calc(100% - 28px);
+  padding: 7px 11px;
+  background: rgba(8, 9, 11, 0.8);
+  border: 1px solid rgba(167, 193, 197, 0.3);
+  color: var(--branco);
+  border-radius: 20px;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.barber-status i {
+  color: var(--teal-claro);
+  font-size: 7px;
+}
+
+.barber-info {
+  padding: clamp(20px, 4vw, 26px);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.barber-role {
+  color: var(--vermelho);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.barber-info h3 {
+  margin: 9px 0;
+  font-size: clamp(21px, 5vw, 27px);
+  text-transform: uppercase;
+}
+
+.barber-info p {
+  color: var(--cinza-2);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.barber-specialties {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 20px 0;
+}
+
+.barber-specialties span {
+  padding: 6px 10px;
+  background: rgba(92, 148, 153, 0.12);
+  color: var(--teal-escuro);
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+/* Botão WhatsApp do barbeiro: sóbrio, verde só no hover */
+.whatsapp-barber {
+  width: 100%;
+  margin-top: auto;
+  padding: 14px;
+  border: 1px solid var(--preto);
+  background: var(--preto);
+  color: var(--branco);
+  border-radius: var(--raio);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+  transition: background 0.25s, border-color 0.25s;
+}
+
+.whatsapp-barber:hover {
+  background: #1faa55;
+  border-color: #1faa55;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(58px, 9vw, 88px);
+  background: var(--carvao);
+}
+
+/* Faixa diagonal vermelha no fundo */
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: -40% -10% auto auto;
+  width: 45%;
+  height: 200%;
+  background: linear-gradient(
+    transparent,
+    rgba(217, 65, 75, 0.22),
+    transparent
+  );
+  transform: skewX(-16deg);
+  pointer-events: none;
+}
+
+.cta-content {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(20px, 4vw, 34px);
+}
+
+.cta-content > div {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+.cta h2 {
+  font-size: clamp(26px, 6vw, 50px);
+  margin: 12px 0;
+  text-transform: uppercase;
+}
+
+.cta p {
+  color: var(--cinza);
+}
+
+/* =========================
+   LOCALIZAÇÃO
+========================= */
+
+.location {
+  background: var(--claro);
+  color: var(--preto);
+}
+
+.map-container {
+  width: 100%;
+  aspect-ratio: var(--ratio-mapa);
+  overflow: hidden;
+  border-radius: var(--raio);
+  border: 1px solid rgba(92, 148, 153, 0.25);
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(0.35) contrast(1.05);
+}
+
+@media (max-width: 700px) {
+  .map-container {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+  background: #050607;
+  border-top: 1px solid rgba(167, 193, 197, 0.12);
+  padding-top: clamp(50px, 8vw, 74px);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+  gap: clamp(28px, 4vw, 42px);
+  padding-bottom: clamp(35px, 6vw, 52px);
+}
+
+.footer-brand img {
+  height: clamp(44px, 9vw, 72px);
+  width: auto;
+  max-width: min(60vw, 220px);
+  object-fit: contain;
+  margin-bottom: 16px;
+}
+
+.footer-brand p {
+  color: var(--cinza);
+  font-size: 13px;
+  max-width: 42ch;
+}
+
+.footer h3 {
+  font-family: var(--texto);
+  font-weight: 700;
+  margin-bottom: 18px;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: var(--teal-claro);
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.footer-links a {
+  color: var(--cinza);
+  font-size: 13px;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--vermelho);
+}
+
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-contact span {
+  color: var(--cinza);
+  font-size: 12.5px;
+}
+
+.footer-contact i {
+  color: var(--teal);
+  margin-right: 8px;
+}
+
+.footer-social > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-social a {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--preto-2);
+  border: 1px solid rgba(167, 193, 197, 0.15);
+  color: var(--teal-claro);
+  border-radius: 50%;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.footer-social a:hover {
+  background: var(--vermelho);
+  border-color: var(--vermelho);
+  color: var(--branco);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(167, 193, 197, 0.1);
+  padding: 22px;
+  padding-bottom: max(22px, env(safe-area-inset-bottom));
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: #4b5557;
+  font-size: 11px;
+}
+
+/* =========================
+   WHATSAPP FLUTUANTE
+========================= */
+
+.btn-whatsapp {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 14px 20px;
+  background: #1faa55;
+  color: var(--branco);
+
+  border-radius: 30px;
+  box-shadow: 0 10px 28px rgba(8, 9, 11, 0.45);
+
+  font-size: 12.5px;
+  font-weight: 700;
+  transition: background 0.25s;
+}
+
+.btn-whatsapp:hover {
+  background: #178c45;
+}
+
+.btn-whatsapp i {
+  font-size: 20px;
+}
+
+@media (max-width: 600px) {
+  .btn-whatsapp {
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .btn-whatsapp span {
+    display: none;
+  }
+}
+
+/* =========================
+   AJUSTES DE CELULAR
+   (o grosso do layout já é automático)
+========================= */
+
+@media (max-width: 600px) {
+  .hero::before {
+    display: none;
+  }
+
+  .hero-buttons {
+    width: 100%;
+  }
+
+  .button-primary,
+  .button-secondary {
+    flex: 1 1 100%;
+  }
+
+  .about-image {
+    aspect-ratio: 16 / 11;
+  }
+
+  .haircut-image {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 400px) {
+  .header-logo img {
+    height: 32px;
+    max-width: 40vw;
+  }
+
+  .barber-photo {
+    aspect-ratio: 3 / 4;
+  }
+
+  .hero-subtitle,
+  .section-tag {
+    letter-spacing: 0.14em;
+  }
+}
+
+/* =========================
+   ACESSIBILIDADE
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
