@@ -630,13 +630,27 @@
 
                         <button
                             class="whatsapp-barber"
-                            data-barber="Pedro Oliveira"
-                            data-phone="5561999999999"
+                            data-barber="Pedro"
+                            data-phone="5561982415054"
                         >
 
                             <i class="fa-brands fa-whatsapp"></i>
 
                             Agendar com Pedro
+
+                        </button>
+
+                        <button
+                            class="profile-barber"
+                            type="button"
+                            data-barber="Pedro"
+                            data-specialties="Degradê, Navalhado, Social"
+                            data-images="assets/pedro-corte1.jpg,assets/pedro-corte2.jpg,assets/pedro-corte3.jpg"
+                        >
+
+                            <i class="fa-solid fa-user"></i>
+
+                            Ver perfil
 
                         </button>
 
@@ -695,12 +709,26 @@
                         <button
                             class="whatsapp-barber"
                             data-barber="Ricardo"
-                            data-phone="5561988888888"
+                            data-phone="556184560098"
                         >
 
                             <i class="fa-brands fa-whatsapp"></i>
 
                             Agendar com Ricardo
+
+                        </button>
+
+                        <button
+                            class="profile-barber"
+                            type="button"
+                            data-barber="Ricardo"
+                            data-specialties="Degradê, Navalhado, Social"
+                            data-images="assets/ricardo-corte1.jpg,assets/ricardo-corte2.jpg,assets/ricardo-corte3.jpg"
+                        >
+
+                            <i class="fa-solid fa-user"></i>
+
+                            Ver perfil
 
                         </button>
 
@@ -759,12 +787,26 @@
                         <button
                             class="whatsapp-barber"
                             data-barber="Lucas"
-                            data-phone="5561977777777"
+                            data-phone="5561993874285"
                         >
 
                             <i class="fa-brands fa-whatsapp"></i>
 
                             Agendar com Lucas
+
+                        </button>
+
+                        <button
+                            class="profile-barber"
+                            type="button"
+                            data-barber="Lucas"
+                            data-specialties="Degradê, Navalhado, Social"
+                            data-images="assets/lucas-corte1.jpg,assets/lucas-corte2.jpg,assets/lucas-corte3.jpg"
+                        >
+
+                            <i class="fa-solid fa-user"></i>
+
+                            Ver perfil
 
                         </button>
 
@@ -977,6 +1019,62 @@
     </a>
 
 
+    <!-- ================= MODAL PERFIL DO BARBEIRO ================= -->
+
+    <div
+        class="profile-modal"
+        id="profileModal"
+        aria-hidden="true"
+    >
+
+        <div
+            class="profile-modal-overlay"
+            data-close-profile
+        ></div>
+
+        <div
+            class="profile-modal-content"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="profileModalTitle"
+        >
+
+            <button
+                class="profile-modal-close"
+                type="button"
+                aria-label="Fechar perfil"
+                data-close-profile
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="profile-modal-header">
+
+                <span class="section-tag">
+                    PERFIL DO BARBEIRO
+                </span>
+
+                <h2 id="profileModalTitle">
+                    Barbeiro
+                </h2>
+
+                <div
+                    class="profile-modal-specialties"
+                    id="profileModalSpecialties"
+                ></div>
+
+            </div>
+
+            <div
+                class="profile-gallery"
+                id="profileGallery"
+            ></div>
+
+        </div>
+
+    </div>
+
+
     <!-- ================= AOS ================= -->
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -987,4 +1085,3 @@
 </body>
 
 </html>
-
